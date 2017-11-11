@@ -6,18 +6,21 @@ $usuario = array();
 $usuario['usr']="administrador";
 $usuario['pss']="administrador";
 
-$vector = array();
-if (isset($_POST['usr']) && isset($_POST['pss']))
- {
-  $login = $_POST['usr'];
-  $pass = $_POST['pss'];
-  $vector['mensaje'] = "no coincide";
+$data = file_get_contents('php://input');
+// Los convertimos en un array
+$data = json_decode( $data, true );
 
-  if ($login == $user['usr'] && $pass==$user['pss'])
+$login = $data['usr'];
+$pass = $data['pss'];
+
+$vector['mensaje'] = "no coincide";
+
+
+  if ($login == $usuario['usr'] && $pass==$usuario['pss'])
    {
-    # code...
+
     $vector['mensaje'] = "coincide";
 }
-}
+
 echo json_encode($vector);
  ?>

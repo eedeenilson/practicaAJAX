@@ -26,31 +26,28 @@
 function Loguear()
 {
     var usr = document.getElementById('usr').value;
-    var usr = document.getElementById('pss').value;
+    var pss = document.getElementById('pss').value;
 
-            var url = "servidor.php";
-            var ajax = new XMLHttpRequest();
+    var json =  '{ "usr":"'+usr+'", "pss":"'+pss+'"}';
+    var url = "servidor.php";
+    var ajax = new XMLHttpRequest();
 
-                ajax.onreadystatechange = function()
-                {
+        ajax.onreadystatechange = function()
+        {
 
-                   if (ajax.readyState == 4  && ajax.status == 200)
-                   {
-                  // Javascript function JSON.parse to parse JSON data
-                  var json = JSON.parse(ajax.responseText);
+           if (ajax.readyState == 4  && ajax.status == 200)
+           {
 
-                  alert(json.mensaje);
+            var objJSON=JSON.parse(ajax.responseText);
 
-                    }
-                }
+            alert(objJSON.mensaje);
+            }
+        }
 
-          ajax.open("POST", url, true);
-          ajax.send();
-       }
-
-fpi_ues@protonmail.com
-practica_2
-
+        ajax.open("POST", url, true);
+        ajax.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+        ajax.send(json);
+}
 </script>
   </body>
 </html>
