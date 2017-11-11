@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Segunda Practica</title>
+  </head>
+  <body>
+    <section id="form">
+      <div>
+        <div>
+      <label >Usuario</label><br><br>
+      <input type="text" name="texto" id="usr"><br><br>
+      <label>Contraseña</label><br><br>
+      <input id="pss">
+      <div class="error">
+      <div id="passError"></div>
+      </div>
+      <br><br>
+      <button type="button" id="saveUser" onclick="Loguear()">Iniciar Sesion</button> <br><br>
+      </div>
+        </div>
+</section>
+
+<script type="text/javascript">
+
+function Loguear()
+{
+    var usr = document.getElementById('usr').value;
+    var usr = document.getElementById('pss').value;
+
+            var url = "servidor.php";
+            var ajax = new XMLHttpRequest();
+
+                ajax.onreadystatechange = function()
+                {
+
+                   if (ajax.readyState == 4  && ajax.status == 200)
+                   {
+                  // Javascript function JSON.parse to parse JSON data
+                  var json = JSON.parse(ajax.responseText);
+
+                  alert(json.mensaje);
+
+                    }
+                }
+
+          ajax.open("POST", url, true);
+          ajax.send();
+       }
+
+fpi_ues@protonmail.com
+practica_2
+
+</script>
+  </body>
+</html>
